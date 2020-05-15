@@ -1,17 +1,30 @@
 eureka-server-docker:
- build: ./eureka-server
- container_name: sb-eureka-server
- ports:
-  - "8761:8761"
+   build: ./eureka-server
+   container_name: sb-eureka-server
+   ports:
+       - "8761:8761"
+   networks:
+      - backend
+      - frontend
+
 config-server-docker:
- build: ./config-server
- container_name: sb-config-server
- ports:
-  - "9000:9000"
+   build: ./config-server
+   container_name: sb-config-server
+   ports:
+      - "9000:9000"
+   networks:
+      - backend
+
 room-services-docker:
- build: ./room-services
- container_name: sb-room-services
- ports:
-  - "8101:8101"
- links:
-  - config-server-docker:config-server
+   build: ./room-services
+   container_name: sb-room-services
+   ports:
+       - "8101:8101"
+   networks:
+      - backend
+
+networks:
+   frontend:
+      driver: fe-driver
+   backend:
+      driver: br-driver
