@@ -1,0 +1,17 @@
+eureka-server-docker:
+ build: ./eureka-server
+ container_name: sb-eureka-server
+ ports:
+  - "8761:8761"
+config-server-docker:
+ build: ./config-server
+ container_name: sb-config-server
+ ports:
+  - "9000:9000"
+room-services-docker:
+ build: ./room-services
+ container_name: sb-room-services
+ ports:
+  - "8101:8101"
+ links:
+  - config-server-docker:config-server
