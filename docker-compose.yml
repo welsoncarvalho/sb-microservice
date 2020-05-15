@@ -1,30 +1,55 @@
-eureka-server-docker:
-   build: ./eureka-server
-   container_name: sb-eureka-server
-   ports:
-       - "8761:8761"
-   networks:
-      - backend
-      - frontend
+version: "3.5"
+services:
+   eureka-server-docker:
+      build: ./eureka-server
+      container_name: sb-eureka-server
+      ports:
+         - "8761:8761"
+      networks:
+         - backend
+         - frontend
 
-config-server-docker:
-   build: ./config-server
-   container_name: sb-config-server
-   ports:
-      - "9000:9000"
-   networks:
-      - backend
+   config-server-docker:
+      build: ./config-server
+      container_name: sb-config-server
+      networks:
+         - backend
 
-room-services-docker:
-   build: ./room-services
-   container_name: sb-room-services
-   ports:
-       - "8101:8101"
-   networks:
-      - backend
+   room-services-docker:
+      build: ./room-services
+      container_name: sb-room-services
+      networks:
+         - backend
+      depends_on:
+         - config-server-docker
+
+#   guest-services-docker:
+#      build: ./guest-services
+#      container_name: sb-guest-services
+#      networks:
+#         - backend
+
+#   reservation-services-docker:
+#      build: ./reservation-services
+#      container_name: sb-reservation-services
+#      networks:
+#         - backend
+
+#   reservation-business-services-docker:
+#      build: ./reservation-business-services
+#      container_name: sb-reservation-business-services
+#      networks:
+#         - backend
+#         - frontend
+
+#   reservation-webapp-docker:
+#      build: ./reservation-webapp
+#      container_name: sb-reservation-webapp
+#      networks:
+#         - frontend
 
 networks:
    frontend:
-      driver: fe-driver
+      name: frontend-network
    backend:
-      driver: br-driver
+      name: backend-network
