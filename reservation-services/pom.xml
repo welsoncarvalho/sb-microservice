@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>reservation-services</name>
+	<name>Reservation Services</name>
 	<description>Data services for the reservation domain</description>
 
 	<parent>

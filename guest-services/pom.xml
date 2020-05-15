@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>guest-services</name>
+	<name>Guest Services</name>
 	<description>Data services for the guest domain for Landon Hotel</description>
 
 	<parent>
