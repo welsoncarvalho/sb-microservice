@@ -34,6 +34,6 @@ public class GuestController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Guest findOne(@PathVariable(name="id")long id){
-        return this.guestRepository.findOne(id);
+        return this.guestRepository.findById(id).get();
     }
 }
