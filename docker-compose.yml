@@ -1,5 +1,25 @@
 version: "3.5"
 services:
+   prometheus-server-docker:
+      image: prom/prometheus
+      container_name: sb-prometheus-server
+      ports:
+         - "9090:9090"
+      volumes:
+         - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      command:
+         - '--config.file=/etc/prometheus/prometheus.yml'
+      networks:
+         - backend
+
+   grafana-server-docker:
+      build: ./grafana
+      container_name: sb-grafana-server
+      ports:
+         - "3000:3000"
+      networks:
+         - backend
+
    eureka-server-docker:
       build: ./eureka-server
       container_name: sb-eureka-server
