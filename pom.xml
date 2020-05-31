@@ -14,6 +14,7 @@
         <module>guest-services</module>
         <module>config-server</module>
         <module>eureka-server</module>
+        <module>gateway-server</module>
         <module>reservation-business-services</module>
         <module>reservation-webapp</module>
     </modules>
